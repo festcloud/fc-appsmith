@@ -41,6 +41,10 @@ import {
   watchCurrentLocation,
 } from "sagas/ActionExecution/geolocationSaga";
 import { postMessageSaga } from "sagas/ActionExecution/PostMessageSaga";
+import {
+  WINDOW_MESSAGE_RECEIVED,
+  windowMessageSaga,
+} from "sagas/ActionExecution/WindowMessageSaga";
 import type { ActionDescription } from "ee/workers/Evaluation/fns";
 import type { AppState } from "ee/reducers";
 import { getAction } from "ee/selectors/entitiesSelector";
@@ -210,5 +214,6 @@ export function* watchActionExecutionSagas() {
       ReduxActionTypes.EVALUATE_ACTION_SELECTOR_FIELD,
       evaluateActionSelectorFieldSaga,
     ),
+    takeEvery(WINDOW_MESSAGE_RECEIVED, windowMessageSaga),
   ]);
 }

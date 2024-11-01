@@ -580,7 +580,8 @@ export const DEBUGGER_OPEN_DOCUMENTATION = () => "Open documentation";
 export const DEBUGGER_SEARCH_SNIPPET = () => "Browse code snippets";
 export const DEBUGGER_APPSMITH_SUPPORT = () => "Get Appsmith support";
 
-//action creator menu
+
+//action creator menu on right nav onClick field
 export const NO_ACTION = () => `No action`;
 export const EXECUTE_A_QUERY = () => `Execute a query`;
 export const NAVIGATE_TO = () => `Navigate to`;
@@ -601,6 +602,7 @@ export const GET_GEO_LOCATION = () => `Get geolocation`;
 export const WATCH_GEO_LOCATION = () => `Watch geolocation`;
 export const STOP_WATCH_GEO_LOCATION = () => `Stop watching geolocation`;
 export const POST_MESSAGE = () => `Post message`;
+export const WINDOW_MESSAGE = () => `Window message`;
 
 //js actions
 export const JS_ACTION_COPY_SUCCESS = (actionName: string, pageName: string) =>

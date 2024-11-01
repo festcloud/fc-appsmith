@@ -186,6 +186,8 @@ export const GLOBAL_DEFS = {
   },
 };
 
+
+// Tooltip description info about method in js editor
 export const GLOBAL_FUNCTIONS = {
   "!name": "DATA_TREE.APPSMITH.FUNCTIONS",
   navigateTo: {
@@ -275,6 +277,13 @@ export const GLOBAL_FUNCTIONS = {
     "!doc":
       "Establish cross-origin communication between Window objects/page and iframes",
     "!type": "fn(message: unknown, source: string, targetOrigin: string)",
+  },
+  windowMessageListener: {
+    "!url":
+      "https://docs.appsmith.com/reference/appsmith-framework/widget-actions/post-message",
+    "!doc":
+      "Establish cross-origin communication between Window objects/page and iframes",
+    "!type": "fn(origin: string, callback: fn(data: unknown) -> void)",
   },
 };
 
