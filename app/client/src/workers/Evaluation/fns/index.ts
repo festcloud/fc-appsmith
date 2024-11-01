@@ -19,6 +19,9 @@ import type {
   TPostWindowMessageDescription,
 } from "./postWindowMessage";
 import postWindowMessage from "./postWindowMessage";
+import {
+  windowMessage
+} from "./windowMessageListener";
 import type {
   TCopyToClipboardActionType,
   TCopyToClipboardDescription,
@@ -69,6 +72,8 @@ export const getEntityFunctions = () => {
   return entityFns;
 };
 
+
+// Tels which function handler triggers 
 const platformFns = [
   {
     name: "navigateTo",
@@ -94,6 +99,7 @@ const platformFns = [
     name: "postWindowMessage",
     fn: postWindowMessage,
   },
+  { name: "windowMessageListener", fn: windowMessage },
   {
     name: "copyToClipboard",
     fn: copyToClipboard,
@@ -194,6 +200,7 @@ export const getActionTriggerFunctionNames = (): Record<string, string> => {
   return ActionTriggerFunctionNames;
 };
 
+// Remove warning from js editor
 const ActionTriggerFunctionNames: Record<string, string> = {
   CLEAR_INTERVAL: "clearInterval",
   CLEAR_PLUGIN_ACTION: "action.clear",
@@ -213,6 +220,7 @@ const ActionTriggerFunctionNames: Record<string, string> = {
   WATCH_CURRENT_LOCATION: "watchLocation",
   STOP_WATCHING_CURRENT_LOCATION: "stopWatch",
   POST_MESSAGE: "postWindowMessage",
+  WINDOW_MESSAGE: "windowMessageListener",
   SET_TIMEOUT: "setTimeout",
   CLEAR_TIMEOUT: "clearTimeout",
 };
