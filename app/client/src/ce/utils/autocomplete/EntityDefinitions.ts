@@ -276,6 +276,13 @@ export const GLOBAL_FUNCTIONS = {
       "Establish cross-origin communication between Window objects/page and iframes",
     "!type": "fn(message: unknown, source: string, targetOrigin: string)",
   },
+  windowMessageListener: {
+    "!url":
+      "https://docs.appsmith.com/reference/appsmith-framework/widget-actions/post-message",
+    "!doc":
+      "Establish cross-origin communication between Window objects/page and iframes",
+    "!type": "fn(origin: string, callback: fn(data: unknown) -> void)",
+  },
 };
 
 // TODO: Fix this the next time the file is edited

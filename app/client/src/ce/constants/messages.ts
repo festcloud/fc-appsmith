@@ -603,6 +603,7 @@ export const GET_GEO_LOCATION = () => `Get geolocation`;
 export const WATCH_GEO_LOCATION = () => `Watch geolocation`;
 export const STOP_WATCH_GEO_LOCATION = () => `Stop watching geolocation`;
 export const POST_MESSAGE = () => `Post message`;
+export const WINDOW_MESSAGE = () => `Window message`;
 
 //js actions
 export const JS_ACTION_COPY_SUCCESS = (actionName: string, pageName: string) =>

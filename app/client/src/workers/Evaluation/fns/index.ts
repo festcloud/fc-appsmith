@@ -19,6 +19,9 @@ import type {
   TPostWindowMessageDescription,
 } from "./postWindowMessage";
 import postWindowMessage from "./postWindowMessage";
+import {
+  windowMessage
+} from "./windowMessageListener";
 import type {
   TCopyToClipboardActionType,
   TCopyToClipboardDescription,
@@ -94,6 +97,9 @@ const platformFns = [
     name: "postWindowMessage",
     fn: postWindowMessage,
   },
+  {
+    name: "windowMessageListener",
+    fn: windowMessage },
   {
     name: "copyToClipboard",
     fn: copyToClipboard,
@@ -213,6 +219,7 @@ const ActionTriggerFunctionNames: Record<string, string> = {
   WATCH_CURRENT_LOCATION: "watchLocation",
   STOP_WATCHING_CURRENT_LOCATION: "stopWatch",
   POST_MESSAGE: "postWindowMessage",
+  WINDOW_MESSAGE: "windowMessageListener",
   SET_TIMEOUT: "setTimeout",
   CLEAR_TIMEOUT: "clearTimeout",
 };
