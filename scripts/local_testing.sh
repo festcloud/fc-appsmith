@@ -107,11 +107,7 @@ pretty_print "RTS build successful. Starting Docker build ..."
 popd
 bash "$(dirname "$0")/generate_info_json.sh"
 docker build -t appsmith/appsmith-ce:local-testing \
-  --build-arg BASE="appsmith/base-$edition:release" \
+  --build-arg BASE="appsmith/base-ce:release" \
   --build-arg APPSMITH_CLOUD_SERVICES_BASE_URL="${cs_url:-https://release-cs.appsmith.com}" \
   . \
   > /dev/null
-pretty_print "Docker image build successful. Triggering run now ..."
-
-(docker stop appsmith || true) && (docker rm appsmith || true)
-docker run -d --name appsmith -p 80:80 -v "$PWD/stacks:/appsmith-stacks" appsmith/appsmith-ce:local-testing && sleep 15 && pretty_print "Local instance is up! Open Appsmith at http://localhost! "
