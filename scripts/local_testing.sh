@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 set -o errexit
 
 display_help()
@@ -28,31 +28,26 @@ pretty_print()
 }
 
 # Check whether user had supplied -h or --help. If yes display usage
-if [[ ( $@ == "--help") ||  $@ == "-h" ]]
-then
+if [[ $@ == "--help" || $@ == "-h" ]]; then
   display_help
   exit 0
 fi
 
 LOCAL=false
-if [[ ($1 == "--local" || $1 == "-l")]]
-then
+if [[ $1 == "--local" || $1 == "-l" ]]; then
   LOCAL=true
 fi
 
 REMOTE=false
-if [[ ($1 == "--remote" || $1 == "-r")]]
-then
+if [[ $1 == "--remote" || $1 == "-r" ]]; then
   REMOTE=true
 fi
 
-if [[ ($LOCAL == true) ]]
-then
+if [[ $LOCAL == true ]]; then
   pretty_print "Setting up instance with local changes"
   BRANCH=release
   cs_url=$2
-elif [[ ($REMOTE == true) ]]
-then
+elif [[ $REMOTE == true ]]; then
   pretty_print "Setting up instance with remote repository branch ..."
   REMOTE_REPOSITORY_URL=$2
   REMOTE_BRANCH=$3
@@ -111,3 +106,4 @@ docker build -t appsmith/appsmith-ce:local-testing \
   --build-arg APPSMITH_CLOUD_SERVICES_BASE_URL="${cs_url:-https://release-cs.appsmith.com}" \
   . \
   > /dev/null
+pretty_print "Docker image build successful. Triggering run now ..."
