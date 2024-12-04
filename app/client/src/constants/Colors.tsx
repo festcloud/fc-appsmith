@@ -1,4 +1,7 @@
+import { meta4Colors } from "./Colors[M4]";
+
 // Color Names generated from http://chir.ag/projects/name-that-color
+
 export const Colors = {
   EBONY_CLAY: "#2A2F3D",
   EBONY_CLAY_2: "#22223B",
@@ -237,6 +240,8 @@ export const Colors = {
   HIGHLIGHT_FILL: "#C273EF",
   HIGHLIGHT_FILL_CELL: "rgba(194,115,239, 0.2)",
   HIGHLIGHT_OUTLINE: "rgba(255, 255, 255, 0.5)",
+  
+  ...meta4Colors,
 };
 
 export type Color = (typeof Colors)[keyof typeof Colors];

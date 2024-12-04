@@ -233,7 +233,7 @@ function AppViewer(props: Props) {
           >
             {isInitialized && <AppViewerPageContainer />}
           </AppViewerBody>
-          <div className={"fixed hidden right-8 z-3 md:flex bottom-4"}>
+          {/* <div className={"fixed hidden right-8 z-3 md:flex bottom-4"}>
             {!hideWatermark && (
               <a
                 className="hover:no-underline"
@@ -245,7 +245,7 @@ function AppViewer(props: Props) {
               </a>
             )}
             <KBViewerFloatingButton />
-          </div>
+          </div> */}
         </AppViewerBodyContainer>
       </EditorContextProvider>
     );

@@ -72,6 +72,8 @@ export const getEntityFunctions = () => {
   return entityFns;
 };
 
+
+// Tels which function handler triggers 
 const platformFns = [
   {
     name: "navigateTo",
@@ -97,6 +99,7 @@ const platformFns = [
     name: "postWindowMessage",
     fn: postWindowMessage,
   },
+  { name: "windowMessageListener", fn: windowMessage },
   {
     name: "windowMessageListener",
     fn: windowMessage },
@@ -200,6 +203,7 @@ export const getActionTriggerFunctionNames = (): Record<string, string> => {
   return ActionTriggerFunctionNames;
 };
 
+// Remove warning from js editor
 const ActionTriggerFunctionNames: Record<string, string> = {
   CLEAR_INTERVAL: "clearInterval",
   CLEAR_PLUGIN_ACTION: "action.clear",

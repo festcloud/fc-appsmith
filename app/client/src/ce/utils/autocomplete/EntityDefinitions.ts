@@ -186,6 +186,8 @@ export const GLOBAL_DEFS = {
   },
 };
 
+
+// Tooltip description info about method in js editor
 export const GLOBAL_FUNCTIONS = {
   "!name": "DATA_TREE.APPSMITH.FUNCTIONS",
   navigateTo: {

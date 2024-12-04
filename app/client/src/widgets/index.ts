@@ -88,6 +88,7 @@ import { WDSNumberInputWidget } from "modules/ui-builder/ui/wds/WDSNumberInputWi
 import { WDSMultilineInputWidget } from "modules/ui-builder/ui/wds/WDSMultilineInputWidget";
 import { WDSSelectWidget } from "modules/ui-builder/ui/wds/WDSSelectWidget";
 import { EEWDSWidgets } from "ee/modules/ui-builder/ui/wds";
+import Meta4Widgets from "./[Meta4]Widgets";
 
 const LegacyWidgets = [
   CanvasWidget,
@@ -192,6 +193,7 @@ const Widgets = [
   ...DeprecatedWidgets,
   ...LegacyWidgets,
   ...EEWDSWidgets,
+  ...Meta4Widgets,
 ] as (typeof BaseWidget)[];
 
 export default Widgets;
