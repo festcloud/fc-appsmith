@@ -31,17 +31,17 @@ if [[ "$(git remote get-url origin)" == *appsmithorg/appsmith-ee.git ]]; then
   edition=ee
 fi
 
-docker rm --force "$container_name"
-docker run \
+sudo docker rm --force "$container_name"
+sudo docker run \
   --detach \
   --name "$container_name" \
   --pull always "appsmith/appsmith-$edition":release
 
-docker cp \
+sudo docker cp \
   "$project_root/deploy/docker/fs/opt/appsmith/utils/bin/move-to-postgres.mjs" \
   "$container_name":/opt/appsmith/utils/export.mjs
 
-docker exec "$container_name" bash -c '
+sudo docker exec "$container_name" bash -c '
 set -o errexit
 set -o nounset
 for attempt in {1..99}; do
@@ -60,8 +60,8 @@ node utils/export.mjs --mongodb-url="$APPSMITH_DB_URL" --baseline
 
 baseline_dir="$project_root/deploy/docker/fs/opt/appsmith/baseline-$edition"
 rm -rf "$baseline_dir"
-docker cp "$container_name":/appsmith-stacks/mongo-data "$baseline_dir"
-docker rm -f "$container_name"
+sudo docker cp "$container_name":/appsmith-stacks/mongo-data "$baseline_dir"
+sudo docker rm -f "$container_name"
 echo Removed "$container_name" and copied the new baseline files.
 
 echo Finish
