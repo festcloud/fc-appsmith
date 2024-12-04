@@ -487,6 +487,7 @@ export interface WidgetBaseProps {
   isMobile?: boolean;
   hasAutoHeight?: boolean;
   hasAutoWidth?: boolean;
+  resizeDisabled?: boolean;
   widgetSize?: { [key: string]: Record<string, string> };
 }
 
