@@ -229,8 +229,8 @@ export const MAX_MODAL_WIDTH_FROM_MAIN_WIDTH = 0.95;
 export const FILE_SIZE_LIMIT_FOR_BLOBS = 5000 * 1024; // 5MB
 
 export const WIDGET_TAGS = {
-  SUGGESTED_WIDGETS: "Suggested",
   META4: "Meta 4",
+  SUGGESTED_WIDGETS: "Suggested",
   INPUTS: "Inputs",
   BUTTONS: "Buttons",
   SELECT: "Select",

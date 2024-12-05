@@ -22,7 +22,7 @@ import type {
 import { FILL_WIDGET_MIN_WIDTH } from "constants/minWidthConstants";
 import { DEFAULT_FONT_SIZE, WIDGET_TAGS } from "constants/WidgetConstants";
 import { ResponsiveBehavior } from "layoutSystems/common/utils/constants";
-import { OverflowTypes } from "../constants";
+import { OverflowTypes, typographyOptions, typographyVariants } from "../constants";
 import IconSVG from "../icon.svg";
 import ThumbnailSVG from "../thumbnail.svg";
 import { DynamicHeight } from "utils/WidgetFeatures";
@@ -37,6 +37,9 @@ import { isDynamicValue } from "utils/DynamicBindingUtils";
 
 const MAX_HTML_PARSING_LENGTH = 1000;
 
+const allowedValues = typographyOptions.map(option => option.value);
+
+
 class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
   static type = "TEXT_WIDGET";
 
@@ -45,7 +48,7 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
       name: "Text",
       iconSVG: IconSVG,
       thumbnailSVG: ThumbnailSVG,
-      tags: [WIDGET_TAGS.SUGGESTED_WIDGETS, WIDGET_TAGS.CONTENT],
+      tags: [WIDGET_TAGS.META4],
       searchTags: ["typography", "paragraph", "label"],
     };
   }
@@ -54,6 +57,7 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
     return {
       dynamicHeight: {
         sectionIndex: 0,
+        defaultValue: DynamicHeight.AUTO_HEIGHT,
         active: true,
       },
     };
@@ -61,12 +65,11 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
 
   static getDefaults() {
     return {
-      text: "Hello {{appsmith.user.name || appsmith.user.email}}",
-      fontSize: DEFAULT_FONT_SIZE,
-      fontStyle: "BOLD",
+      text: "Hello World",
+      typography: "body4",
       textAlign: "LEFT",
-      textColor: "#231F20",
-      rows: 4,
+      textColor: "#212121",
+      rows: 2,
       columns: 16,
       widgetName: "Text",
       shouldTruncate: false,
@@ -75,6 +78,8 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
       animateLoading: true,
       responsiveBehavior: ResponsiveBehavior.Fill,
       minWidth: FILL_WIDGET_MIN_WIDTH,
+      minDynamicHeight: 1,
+      minHeight: 2,
       blueprint: {
         operations: [
           {
@@ -126,7 +131,7 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
           configuration: () => {
             return {
               minWidth: "120px",
-              minHeight: "40px",
+              minHeight: "12px",
             };
           },
         },
@@ -143,7 +148,7 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
       widgetSize: {
         maxHeight: {},
         maxWidth: {},
-        minHeight: { base: "40px" },
+        minHeight: { base: "12px" },
         minWidth: { base: "120px" },
       },
     };
@@ -243,13 +248,15 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
     ];
   }
 
-  static getStylesheetConfig(): Stylesheet {
-    return {
-      truncateButtonColor: "{{appsmith.theme.colors.primaryColor}}",
-      fontFamily: "{{appsmith.theme.fontFamily.appFont}}",
-      borderRadius: "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    };
-  }
+  // static getStylesheetConfig(): Stylesheet {
+  //   return {
+  //     truncateButtonColor: "{{appsmith.theme.colors.primaryColor}}",
+  //     fontFamily: "{{appsmith.theme.fontFamily.appFont}}",
+  //     borderRadius: "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  //   };
+  // }
+
+
 
   static getPropertyPaneStyleConfig() {
     return [
@@ -257,114 +264,21 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
         sectionName: "General",
         children: [
           {
-            propertyName: "fontFamily",
-            label: "Font family",
-            helpText: "Controls the font family being used",
+            propertyName: "typography",
+            label: "Typography",
+            helpText: "Controls the font being used",
             controlType: "DROP_DOWN",
-            options: [
-
-              {
-                label: "Onest",
-                value: "Onest",
-              },
-              {
-                label: "Geologica",
-                value: "Geologica",
-              },
-              {
-                label: "System Default",
-                value: "System Default",
-              },
-              {
-                label: "Nunito Sans",
-                value: "Nunito Sans",
-              },
-              {
-                label: "Poppins",
-                value: "Poppins",
-              },
-              {
-                label: "Inter",
-                value: "Inter",
-              },
-              {
-                label: "Montserrat",
-                value: "Montserrat",
-              },
-              {
-                label: "Noto Sans",
-                value: "Noto Sans",
-              },
-              {
-                label: "Open Sans",
-                value: "Open Sans",
-              },
-              {
-                label: "Roboto",
-                value: "Roboto",
-              },
-              {
-                label: "Rubik",
-                value: "Rubik",
-              },
-              {
-                label: "Ubuntu",
-                value: "Ubuntu",
-              },
-            ],
-            defaultValue: "System Default",
+            options: typographyOptions,
+            defaultValue: "body4",
             isJSConvertible: true,
             isBindProperty: true,
             isTriggerProperty: false,
             validation: {
               type: ValidationTypes.TEXT,
             },
+           
           },
-          {
-            propertyName: "fontSize",
-            label: "Font size",
-            helpText: "Controls the size of the font used",
-            controlType: "DROP_DOWN",
-            defaultValue: "1rem",
-            options: [
-              {
-                label: "S",
-                value: "0.875rem",
-                subText: "0.875rem",
-              },
-              {
-                label: "M",
-                value: "1rem",
-                subText: "1rem",
-              },
-              {
-                label: "L",
-                value: "1.25rem",
-                subText: "1.25rem",
-              },
-              {
-                label: "XL",
-                value: "1.875rem",
-                subText: "1.875rem",
-              },
-              {
-                label: "XXL",
-                value: "3rem",
-                subText: "3rem",
-              },
-              {
-                label: "3XL",
-                value: "3.75rem",
-                subText: "3.75rem",
-              },
-            ],
-            isJSConvertible: true,
-            isBindProperty: true,
-            isTriggerProperty: false,
-            validation: {
-              type: ValidationTypes.TEXT,
-            },
-          },
+         
         ],
       },
       {
@@ -465,44 +379,25 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
             isTriggerProperty: false,
             validation: { type: ValidationTypes.TEXT },
           },
-          {
-            propertyName: "fontStyle",
-            label: "Emphasis",
-            helpText: "Controls the font emphasis of the text displayed",
-            controlType: "BUTTON_GROUP",
-            options: [
-              {
-                icon: "text-bold",
-                value: "BOLD",
-              },
-              {
-                icon: "text-italic",
-                value: "ITALIC",
-              },
-            ],
-            isJSConvertible: true,
-            isBindProperty: true,
-            isTriggerProperty: false,
-            validation: { type: ValidationTypes.TEXT },
-          },
+         
         ],
       },
-      {
-        sectionName: "Border and shadow",
-        children: [
-          {
-            helpText:
-              "Enter value for border width which can also use as margin",
-            propertyName: "borderWidth",
-            label: "Border width",
-            placeholderText: "Enter value in px",
-            controlType: "INPUT_TEXT",
-            isBindProperty: true,
-            isTriggerProperty: false,
-            validation: { type: ValidationTypes.NUMBER },
-          },
-        ],
-      },
+      // {
+      //   sectionName: "Border and shadow",
+      //   children: [
+      //     {
+      //       helpText:
+      //         "Enter value for border width which can also use as margin",
+      //       propertyName: "borderWidth",
+      //       label: "Border width",
+      //       placeholderText: "Enter value in px",
+      //       controlType: "INPUT_TEXT",
+      //       isBindProperty: true,
+      //       isTriggerProperty: false,
+      //       validation: { type: ValidationTypes.NUMBER },
+      //     },
+      //   ],
+      // },
     ];
   }
 
@@ -551,7 +446,7 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
     const disableLink: boolean = this.props.disableLink
       ? true
       : this.shouldDisableLink();
-
+   console.log("HANDLE_CONSOLE", this.props)
     return (
       <WidgetStyleContainer
         className="t--text-widget-container"
@@ -569,6 +464,7 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
           fontFamily={this.props.fontFamily}
           fontSize={this.props.fontSize}
           fontStyle={this.props.fontStyle}
+          typography={this.props.typography}
           isLoading={this.props.isLoading}
           key={this.props.widgetId}
           minHeight={this.props.minHeight}
@@ -609,6 +505,7 @@ export interface TextStyles {
   fontSize?: TextSize;
   textAlign?: TextAlign;
   truncateButtonColor?: string;
+  typography: string;
   fontFamily: string;
 }
 
