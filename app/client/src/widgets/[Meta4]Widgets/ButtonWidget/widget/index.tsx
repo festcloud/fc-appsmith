@@ -1,10 +1,6 @@
 import { Alignment } from "@blueprintjs/core";
 import type { IconName } from "@blueprintjs/icons";
-import type {
-  ButtonPlacement,
-  ButtonVariant,
-  RecaptchaType,
-} from "components/constants";
+import type { ButtonPlacement, RecaptchaType } from "components/constants";
 import {
   ButtonPlacementTypes,
   ButtonVariantTypes,
@@ -35,6 +31,12 @@ import type {
   SnipingModeProperty,
 } from "WidgetProvider/constants";
 import { WIDGET_TAGS } from "constants/WidgetConstants";
+import {
+  ButtonSizeTypes,
+  ButtonStyleVariantTypes,
+  type ButtonSize,
+  type ButtonVariant,
+} from "widgets/[Meta4]Widgets/constants";
 
 class ButtonWidget extends BaseWidget<ButtonWidgetProps, ButtonWidgetState> {
   onButtonClickBound: (event: React.MouseEvent<HTMLElement>) => void;
@@ -48,7 +50,7 @@ class ButtonWidget extends BaseWidget<ButtonWidgetProps, ButtonWidgetState> {
     };
   }
 
-  static type = "META4_BUTTON_WIDGET";
+  static type = "M4_BUTTON_WIDGET";
 
   static getConfig() {
     return {
@@ -66,9 +68,10 @@ class ButtonWidget extends BaseWidget<ButtonWidgetProps, ButtonWidgetState> {
       animateLoading: true,
       text: "Submit",
       buttonVariant: ButtonVariantTypes.PRIMARY,
+      buttonSize: ButtonSizeTypes.MEDIUM,
       placement: ButtonPlacementTypes.CENTER,
       rows: 4,
-      columns: 16,
+      columns: 4,
       widgetName: "Button",
       isDisabled: false,
       isVisible: true,
@@ -303,21 +306,25 @@ class ButtonWidget extends BaseWidget<ButtonWidgetProps, ButtonWidgetState> {
             propertyName: "buttonVariant",
             label: "Button variant",
             controlType: "ICON_TABS",
-            defaultValue: ButtonVariantTypes.PRIMARY,
+            defaultValue: ButtonStyleVariantTypes.PRIMARY,
             fullWidth: true,
             helpText: "Sets the variant of the icon button",
             options: [
               {
                 label: "Primary",
-                value: ButtonVariantTypes.PRIMARY,
+                value: ButtonStyleVariantTypes.PRIMARY,
               },
               {
-                label: "Secondary",
-                value: ButtonVariantTypes.SECONDARY,
+                label: "Outline",
+                value: ButtonStyleVariantTypes.OUTLINE,
               },
               {
-                label: "Tertiary",
-                value: ButtonVariantTypes.TERTIARY,
+                label: "Text",
+                value: ButtonStyleVariantTypes.TEXT,
+              },
+              {
+                label: "Error",
+                value: ButtonStyleVariantTypes.ERROR,
               },
             ],
             isJSConvertible: true,
@@ -327,11 +334,40 @@ class ButtonWidget extends BaseWidget<ButtonWidgetProps, ButtonWidgetState> {
               type: ValidationTypes.TEXT,
               params: {
                 allowedValues: [
-                  ButtonVariantTypes.PRIMARY,
-                  ButtonVariantTypes.SECONDARY,
-                  ButtonVariantTypes.TERTIARY,
+                  ButtonStyleVariantTypes.PRIMARY,
+                  ButtonStyleVariantTypes.OUTLINE,
+                  ButtonStyleVariantTypes.TEXT,
+                  ButtonStyleVariantTypes.ERROR,
                 ],
-                default: ButtonVariantTypes.PRIMARY,
+                default: ButtonStyleVariantTypes.PRIMARY,
+              },
+            },
+          },
+          {
+            propertyName: "buttonSize",
+            label: "Button size",
+            controlType: "ICON_TABS",
+            defaultValue: ButtonSizeTypes.MEDIUM,
+            fullWidth: true,
+            helpText: "Sets the variant of the icon button",
+            options: [
+              {
+                label: "Medium",
+                value: ButtonSizeTypes.MEDIUM,
+              },
+              {
+                label: "Small",
+                value: ButtonSizeTypes.SMALL,
+              },
+            ],
+            isJSConvertible: true,
+            isBindProperty: true,
+            isTriggerProperty: false,
+            validation: {
+              type: ValidationTypes.TEXT,
+              params: {
+                allowedValues: [ButtonSizeTypes.MEDIUM, ButtonSizeTypes.SMALL],
+                default: ButtonSizeTypes.MEDIUM,
               },
             },
           },
@@ -433,59 +469,7 @@ class ButtonWidget extends BaseWidget<ButtonWidgetProps, ButtonWidgetState> {
           },
         ],
       },
-      {
-        sectionName: "Color",
-        children: [
-          {
-            propertyName: "buttonColor",
-            helpText: "Changes the color of the button",
-            label: "Button color",
-            controlType: "COLOR_PICKER",
-            isJSConvertible: true,
-            isBindProperty: true,
-            isTriggerProperty: false,
-            validation: { type: ValidationTypes.TEXT },
-          },
-        ],
-      },
-      {
-        sectionName: "Border and shadow",
-        children: [
-          {
-            propertyName: "borderRadius",
-            label: "Border radius",
-            helpText:
-              "Rounds the corners of the icon button's outer border edge",
-            controlType: "BORDER_RADIUS_OPTIONS",
-            isBindProperty: true,
-            isJSConvertible: true,
-            isTriggerProperty: false,
-            validation: {
-              type: ValidationTypes.TEXT,
-            },
-          },
-          {
-            propertyName: "boxShadow",
-            label: "Box shadow",
-            helpText:
-              "Enables you to cast a drop shadow from the frame of the widget",
-            controlType: "BOX_SHADOW_OPTIONS",
-            isJSConvertible: true,
-            isBindProperty: true,
-            isTriggerProperty: false,
-            validation: { type: ValidationTypes.TEXT },
-          },
-        ],
-      },
     ];
-  }
-
-  static getStylesheetConfig(): Stylesheet {
-    return {
-      buttonColor: "{{appsmith.theme.colors.primaryColor}}",
-      borderRadius: "{{appsmith.theme.borderRadius.appBorderRadius}}",
-      boxShadow: "none",
-    };
   }
 
   // TODO: Fix this the next time the file is edited
@@ -588,6 +572,7 @@ class ButtonWidget extends BaseWidget<ButtonWidgetProps, ButtonWidgetState> {
         boxShadow={this.props.boxShadow}
         buttonColor={this.props.buttonColor}
         buttonVariant={this.props.buttonVariant}
+        buttonSize={this.props.buttonSize}
         clickWithRecaptcha={this.clickWithRecaptchaBound}
         googleRecaptchaKey={this.props.googleRecaptchaKey}
         handleRecaptchaV2Loading={this.handleRecaptchaV2Loading}
@@ -622,6 +607,7 @@ export interface ButtonWidgetProps extends WidgetProps {
   buttonType?: ButtonType;
   googleRecaptchaKey?: string;
   buttonVariant?: ButtonVariant;
+  buttonSize?: ButtonSize;
   buttonColor?: string;
   borderRadius?: string;
   boxShadow?: string;

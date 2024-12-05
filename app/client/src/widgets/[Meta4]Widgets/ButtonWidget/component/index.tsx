@@ -18,23 +18,23 @@ import {
 import ReCAPTCHA from "react-google-recaptcha";
 import { Colors } from "constants/Colors";
 import _ from "lodash";
-import type {
-  ButtonPlacement,
-  ButtonVariant,
-  RecaptchaType,
-} from "components/constants";
-import { ButtonVariantTypes, RecaptchaTypes } from "components/constants";
+import type { ButtonPlacement, RecaptchaType } from "components/constants";
+import { RecaptchaTypes } from "components/constants";
+import { getCustomJustifyContent, getAlignText } from "widgets/WidgetUtils";
+import { DragContainer } from "./DragContainer";
 import {
+  buttonHoverActiveStyles,
   getCustomBackgroundColor,
   getCustomBorderColor,
-  getCustomJustifyContent,
-  getAlignText,
-  getComplementaryGrayscaleColor,
-} from "widgets/WidgetUtils";
-import { DragContainer } from "./DragContainer";
-import { buttonHoverActiveStyles } from "./utils";
+  getCustomColor,
+} from "./utils";
 import type { ThemeProp } from "WidgetProvider/constants";
 import { toast } from "@appsmith/ads";
+import {
+  ButtonStyleVariantTypes,
+  type ButtonSize,
+  type ButtonVariant,
+} from "widgets/[Meta4]Widgets/constants";
 
 const RecaptchaWrapper = styled.div`
   position: relative;
@@ -70,7 +70,7 @@ const buttonBaseStyle = css<ThemeProp & ButtonStyleProps>`
   background-image: none !important;
   font-weight: ${(props) => props.theme.fontWeights[2]};
   outline: none;
-  padding: 0px 10px;
+
   gap: 8px;
 
   &:hover,
@@ -79,39 +79,25 @@ const buttonBaseStyle = css<ThemeProp & ButtonStyleProps>`
     ${buttonHoverActiveStyles}
   }
 
-  ${({ buttonColor, buttonVariant, theme }) => `
-    background: ${
-      getCustomBackgroundColor(buttonVariant, buttonColor) !== "none"
-        ? getCustomBackgroundColor(buttonVariant, buttonColor)
-        : buttonVariant === ButtonVariantTypes.PRIMARY
-          ? theme.colors.button.primary.primary.bgColor
-          : "none"
-    } !important;
-
-
+  ${({ buttonColor, buttonVariant, buttonSize, theme }) => `
+    background: ${getCustomBackgroundColor(buttonVariant)} !important;
+    padding: ${(buttonSize === "MEDIUM" && "8px 24px") || (buttonSize === "SMALL" && "6px 24px")}
+  
     &:disabled, &.${Classes.DISABLED} {
     cursor: not-allowed;
     background-color: ${
-      buttonVariant !== ButtonVariantTypes.TERTIARY &&
+      buttonVariant !== ButtonStyleVariantTypes.TEXT &&
       "var(--wds-color-bg-disabled)"
     } !important;
-    color: var(--wds-color-text-disabled) !important;
+    color: ${getCustomColor(buttonVariant)} !important;
     box-shadow: none !important;
     pointer-events: none;
     border-color: var(--wds-color-border-disabled) !important;
 
-    > span {
-      color: var(--wds-color-text-disabled) !important;
-    }
+   
   }
 
-  border: ${
-    getCustomBorderColor(buttonVariant, buttonColor) !== "none"
-      ? `1px solid ${getCustomBorderColor(buttonVariant, buttonColor)}`
-      : buttonVariant === ButtonVariantTypes.SECONDARY
-        ? `1px solid ${theme.colors.button.primary.secondary.borderColor}`
-        : "none"
-  } !important;
+  border: ${getCustomBorderColor(buttonVariant)} !important;
 
   & > * {
     margin-right: 0;
@@ -124,15 +110,11 @@ const buttonBaseStyle = css<ThemeProp & ButtonStyleProps>`
     white-space: nowrap;
     line-height: normal;
 
-    color: ${
-      buttonVariant === ButtonVariantTypes.PRIMARY
-        ? getComplementaryGrayscaleColor(buttonColor)
-        : getCustomBackgroundColor(ButtonVariantTypes.PRIMARY, buttonColor)
-    } !important;
+    color: ${getCustomColor(buttonVariant)} !important;
   }
 `}
 
-  border-radius: ${({ borderRadius }) => borderRadius};
+  border-radius: "8px";
   box-shadow: ${({ boxShadow }) => `${boxShadow ?? "none"}`} !important;
 
   ${({ placement }) =>
@@ -154,6 +136,7 @@ export const StyledButton = styled((props) => (
       "boxShadowColor",
       "buttonColor",
       "buttonVariant",
+      "buttonSize",
       "primaryColor",
       "navColorStyle",
       "variant",
@@ -168,6 +151,7 @@ export const StyledButton = styled((props) => (
 export interface ButtonStyleProps {
   buttonColor?: string;
   buttonVariant?: ButtonVariant;
+  buttonSize?: ButtonSize;
   boxShadow?: string;
   boxShadowColor?: string;
   borderRadius?: string;
@@ -188,6 +172,7 @@ export function BaseButton(props: IButtonProps & ButtonStyleProps) {
     boxShadowColor,
     buttonColor,
     buttonVariant,
+    buttonSize,
     className,
     disabled,
     icon,
@@ -209,6 +194,7 @@ export function BaseButton(props: IButtonProps & ButtonStyleProps) {
     <DragContainer
       buttonColor={buttonColor}
       buttonVariant={buttonVariant}
+      buttonSize={buttonSize}
       disabled={disabled}
       loading={loading}
       maxWidth={maxWidth}
@@ -225,6 +211,7 @@ export function BaseButton(props: IButtonProps & ButtonStyleProps) {
         boxShadowColor={boxShadowColor}
         buttonColor={buttonColor}
         buttonVariant={buttonVariant}
+        buttonSize={buttonSize}
         className={className}
         data-test-variant={buttonVariant}
         disabled={disabled}
@@ -242,7 +229,7 @@ export function BaseButton(props: IButtonProps & ButtonStyleProps) {
 
 BaseButton.defaultProps = {
   buttonColor: Colors.GREEN,
-  buttonVariant: ButtonVariantTypes.PRIMARY,
+  buttonVariant: ButtonStyleVariantTypes.PRIMARY,
   disabled: false,
   text: "Button Text",
   minimal: true,
@@ -273,6 +260,7 @@ interface ButtonComponentProps extends ComponentProps {
   type: ButtonType;
   buttonColor?: string;
   buttonVariant?: ButtonVariant;
+  buttonSize?: ButtonSize;
   borderRadius?: string;
   boxShadow?: string;
   boxShadowColor?: string;
@@ -488,6 +476,7 @@ function ButtonComponent(props: ButtonComponentProps & RecaptchaProps) {
         boxShadowColor={props.boxShadowColor}
         buttonColor={props.buttonColor}
         buttonVariant={props.buttonVariant}
+        buttonSize={props.buttonSize}
         disabled={props.isDisabled}
         icon={props.icon}
         iconAlign={props.iconAlign}

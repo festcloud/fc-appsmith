@@ -22,7 +22,11 @@ import type {
 import { FILL_WIDGET_MIN_WIDTH } from "constants/minWidthConstants";
 import { DEFAULT_FONT_SIZE, WIDGET_TAGS } from "constants/WidgetConstants";
 import { ResponsiveBehavior } from "layoutSystems/common/utils/constants";
-import { OverflowTypes, typographyOptions, typographyVariants } from "../constants";
+import {
+  OverflowTypes,
+  typographyOptions,
+  typographyVariants,
+} from "../constants";
 import IconSVG from "../icon.svg";
 import ThumbnailSVG from "../thumbnail.svg";
 import { DynamicHeight } from "utils/WidgetFeatures";
@@ -37,11 +41,10 @@ import { isDynamicValue } from "utils/DynamicBindingUtils";
 
 const MAX_HTML_PARSING_LENGTH = 1000;
 
-const allowedValues = typographyOptions.map(option => option.value);
-
+const allowedValues = typographyOptions.map((option) => option.value);
 
 class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
-  static type = "TEXT_WIDGET";
+  static type = "M4_TEXT_WIDGET";
 
   static getConfig() {
     return {
@@ -256,8 +259,6 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
   //   };
   // }
 
-
-
   static getPropertyPaneStyleConfig() {
     return [
       {
@@ -276,9 +277,7 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
             validation: {
               type: ValidationTypes.TEXT,
             },
-           
           },
-         
         ],
       },
       {
@@ -379,7 +378,6 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
             isTriggerProperty: false,
             validation: { type: ValidationTypes.TEXT },
           },
-         
         ],
       },
       // {
@@ -446,7 +444,7 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
     const disableLink: boolean = this.props.disableLink
       ? true
       : this.shouldDisableLink();
-   console.log("HANDLE_CONSOLE", this.props)
+
     return (
       <WidgetStyleContainer
         className="t--text-widget-container"
