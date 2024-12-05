@@ -2421,6 +2421,8 @@
       },
       "fontFamily": {
         "appFont": [
+          "Onest",
+          "Geologica",
           "System Default",
           "Nunito Sans",
           "Poppins",

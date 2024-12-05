@@ -16260,6 +16260,8 @@ export const defaultAppState = {
             },
             fontFamily: {
               appFont: [
+                "Onest",
+                "Geologica",
                 "System Default",
                 "Nunito Sans",
                 "Poppins",
@@ -16694,6 +16696,8 @@ export const defaultAppState = {
             },
             fontFamily: {
               appFont: [
+                "Onest",
+                "Geologica",
                 "System Default",
                 "Nunito Sans",
                 "Poppins",
@@ -17127,6 +17131,8 @@ export const defaultAppState = {
             },
             fontFamily: {
               appFont: [
+                "Onest",
+                "Geologica",
                 "System Default",
                 "Nunito Sans",
                 "Poppins",
@@ -17561,6 +17567,8 @@ export const defaultAppState = {
             },
             fontFamily: {
               appFont: [
+                "Onest",
+                "Geologica",
                 "System Default",
                 "Nunito Sans",
                 "Poppins",
@@ -17995,6 +18003,8 @@ export const defaultAppState = {
             },
             fontFamily: {
               appFont: [
+                "Onest",
+                "Geologica",
                 "System Default",
                 "Nunito Sans",
                 "Poppins",
@@ -18429,6 +18439,8 @@ export const defaultAppState = {
             },
             fontFamily: {
               appFont: [
+                "Onest",
+                "Geologica",
                 "System Default",
                 "Nunito Sans",
                 "Poppins",
@@ -18863,6 +18875,8 @@ export const defaultAppState = {
             },
             fontFamily: {
               appFont: [
+                "Onest",
+                "Geologica",
                 "System Default",
                 "Nunito Sans",
                 "Poppins",
@@ -19297,6 +19311,8 @@ export const defaultAppState = {
             },
             fontFamily: {
               appFont: [
+                "Onest",
+                "Geologica",
                 "System Default",
                 "Nunito Sans",
                 "Poppins",
@@ -19731,6 +19747,8 @@ export const defaultAppState = {
             },
             fontFamily: {
               appFont: [
+                "Onest",
+                "Geologica",
                 "System Default",
                 "Nunito Sans",
                 "Poppins",
@@ -20171,6 +20189,8 @@ export const defaultAppState = {
           },
           fontFamily: {
             appFont: [
+              "Onest",
+              "Geologica",
               "System Default",
               "Nunito Sans",
               "Poppins",
