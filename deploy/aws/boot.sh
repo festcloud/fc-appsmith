@@ -95,7 +95,7 @@ done
 
 cd $install_dir
 echo "Pull Images: $PWD"
-sudo docker-compose pull
+docker-compose pull
 
 echo "docker compose $PWD"
-sudo docker-compose -f docker-compose.yml up -d --remove-orphans
+docker-compose -f docker-compose.yml up -d --remove-orphans

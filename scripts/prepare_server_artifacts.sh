@@ -21,8 +21,8 @@ mv "$target/mongo"/server-*.jar "$target/mongo/server.jar"
 
 # Grab PostgreSQL server artifacts from Docker image.
 image="appsmith/appsmith-$EDITION:$PG_TAG"
-sudo docker run --name xx --detach --entrypoint sleep "$image" infinity
-sudo docker cp xx:/opt/appsmith/server/pg "$target/pg"
-sudo docker cp xx:/opt/appsmith/info.json "$target/pg/source-info.json"
-sudo docker rm --force xx
-sudo docker image rm "$image"
+docker run --name xx --detach --entrypoint sleep "$image" infinity
+docker cp xx:/opt/appsmith/server/pg "$target/pg"
+docker cp xx:/opt/appsmith/info.json "$target/pg/source-info.json"
+docker rm --force xx
+docker image rm "$image"
