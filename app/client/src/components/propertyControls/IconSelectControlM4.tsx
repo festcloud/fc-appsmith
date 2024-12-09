@@ -1,8 +1,7 @@
 import * as React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Alignment, Button, Classes, MenuItem } from "@blueprintjs/core";
-import type { IconName } from "@blueprintjs/icons";
-import { IconNames } from "@blueprintjs/icons";
+import IconNames from "../mock/meta4Icons";
 import type { ItemListRenderer, ItemRenderer } from "@blueprintjs/select";
 import { Select } from "@blueprintjs/select";
 import type { GridListProps, VirtuosoGridHandle } from "react-virtuoso";
@@ -15,6 +14,8 @@ import _ from "lodash";
 import { generateReactKey } from "utils/generators";
 import { emitInteractionAnalyticsEvent } from "utils/AppsmithUtils";
 import { Tooltip } from "@appsmith/ads";
+
+type IconName = (typeof IconNames)[keyof typeof IconNames];
 
 const IconSelectContainerStyles = createGlobalStyle<{
   targetWidth: number | undefined;
@@ -100,7 +101,7 @@ const StyledMenuItem = styled(MenuItem)`
   }
 `;
 
-export interface IconSelectControlProps extends ControlProps {
+export interface IconSelectControlM4Props extends ControlProps {
   propertyValue?: IconName;
   defaultIconName?: IconName;
   hideNoneIcon?: boolean;
@@ -122,7 +123,7 @@ const icons = new Set(ICON_NAMES);
 const TypedSelect = Select.ofType<IconType>();
 
 class IconSelectControl extends BaseControl<
-  IconSelectControlProps,
+  IconSelectControlM4Props,
   IconSelectControlState
 > {
   private iconSelectTargetRef: React.RefObject<HTMLButtonElement>;
@@ -132,7 +133,7 @@ class IconSelectControl extends BaseControl<
   private searchInput: React.RefObject<HTMLInputElement>;
   id: string = generateReactKey();
 
-  constructor(props: IconSelectControlProps) {
+  constructor(props: IconSelectControlM4Props) {
     super(props);
     this.iconSelectTargetRef = React.createRef();
     this.virtuosoRef = React.createRef();
@@ -476,11 +477,11 @@ class IconSelectControl extends BaseControl<
   };
 
   static getControlType() {
-    return "ICON_SELECT";
+    return "ICON_SELECT_M4";
   }
 
   static canDisplayValueInUI(
-    config: IconSelectControlProps,
+    config: IconSelectControlM4Props,
     // TODO: Fix this the next time the file is edited
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     value: any,

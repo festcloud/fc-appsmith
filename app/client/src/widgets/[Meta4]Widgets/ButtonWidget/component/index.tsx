@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled, { createGlobalStyle, css } from "styled-components";
 import Interweave from "interweave";
 import type { IButtonProps, MaybeElement } from "@blueprintjs/core";
-import { Button, Alignment, Position, Classes } from "@blueprintjs/core";
+import { Button, Alignment, Position, Classes, Icon } from "@blueprintjs/core";
 import { Popover2 } from "@blueprintjs/popover2";
 import type { IconName } from "@blueprintjs/icons";
 
@@ -66,10 +66,12 @@ const TooltipStyles = createGlobalStyle`
 `;
 
 const buttonBaseStyle = css<ThemeProp & ButtonStyleProps>`
-  height: 100%;
   background-image: none !important;
-  font-weight: ${(props) => props.theme.fontWeights[2]};
+  font-family: Onest;
   outline: none;
+
+  border-radius: 8px;
+  box-shadow: ${({ boxShadow }) => `${boxShadow ?? "none"}`} !important;
 
   gap: 8px;
 
@@ -79,9 +81,15 @@ const buttonBaseStyle = css<ThemeProp & ButtonStyleProps>`
     ${buttonHoverActiveStyles}
   }
 
-  ${({ buttonColor, buttonVariant, buttonSize, theme }) => `
+  ${({ buttonColor, buttonVariant, buttonSize, icon, theme }) => {
+    return `
+    height: ${(buttonSize === "MEDIUM" && "44px") || (buttonSize === "SMALL" && "36px")} !important;
+    padding: ${(buttonSize === "MEDIUM" && `6px ${icon ? "14px" : "22px"}`) || (buttonSize === "SMALL" && `4px ${icon ? "14px" : "22px"}`)} !important;
+  
     background: ${getCustomBackgroundColor(buttonVariant)} !important;
-    padding: ${(buttonSize === "MEDIUM" && "8px 24px") || (buttonSize === "SMALL" && "6px 24px")}
+    border: 2px solid ${getCustomBorderColor(buttonVariant)} !important;
+
+    color: ${getCustomColor(buttonVariant)} !important;
   
     &:disabled, &.${Classes.DISABLED} {
     cursor: not-allowed;
@@ -97,7 +105,7 @@ const buttonBaseStyle = css<ThemeProp & ButtonStyleProps>`
    
   }
 
-  border: ${getCustomBorderColor(buttonVariant)} !important;
+  
 
   & > * {
     margin-right: 0;
@@ -108,14 +116,16 @@ const buttonBaseStyle = css<ThemeProp & ButtonStyleProps>`
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    line-height: normal;
 
-    color: ${getCustomColor(buttonVariant)} !important;
+    font-size: ${(buttonSize === "MEDIUM" && "16px") || (buttonSize === "SMALL" && "14px")} !important;
+    line-height: ${(buttonSize === "MEDIUM" && "24px") || (buttonSize === "SMALL" && "21px")} !important;
+    font-weight: ${(buttonSize === "MEDIUM" && 600) || (buttonSize === "SMALL" && 500)} !important;
+    
+    color: currentColor !important;
+   
   }
-`}
-
-  border-radius: "8px";
-  box-shadow: ${({ boxShadow }) => `${boxShadow ?? "none"}`} !important;
+`;
+  }}
 
   ${({ placement }) =>
     placement
@@ -155,6 +165,7 @@ export interface ButtonStyleProps {
   boxShadow?: string;
   boxShadowColor?: string;
   borderRadius?: string;
+  icon?: IconName | MaybeElement;
   iconName?: IconName;
   iconAlign?: Alignment;
   shouldFitContent?: boolean;
@@ -187,7 +198,7 @@ export function BaseButton(props: IButtonProps & ButtonStyleProps) {
     rightIcon,
     text,
   } = props;
-
+  console.log("HANDLE_CONSOLE", { icon });
   const isRightAlign = iconAlign === Alignment.RIGHT;
 
   return (
@@ -212,7 +223,8 @@ export function BaseButton(props: IButtonProps & ButtonStyleProps) {
         buttonColor={buttonColor}
         buttonVariant={buttonVariant}
         buttonSize={buttonSize}
-        className={className}
+        className={`${className} pt-icon-large`}
+        // className={className}
         data-test-variant={buttonVariant}
         disabled={disabled}
         fill

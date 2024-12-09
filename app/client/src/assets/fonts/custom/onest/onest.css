@@ -2,14 +2,6 @@
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Onest";
   font-style: normal;
-  font-weight: 200;
-  src: url("./onest/Onest-ExtraLight.woff2") format("woff2");
-}
-
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Onest";
-  font-style: normal;
   font-weight: 300;
   src: url("./onest/Onest-Light.woff2") format("woff2");
 }
@@ -47,14 +39,5 @@
   font-style: normal;
   font-weight: 700;
   src: url("./onest/Onest-Bold.woff2") format("woff2");
-  /* Chrome 36+, Opera 23+, Firefox 39+ */
-}
-
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Onest";
-  font-style: normal;
-  font-weight: 800;
-  src: url("./onest/Onest-ExtraBold.woff2") format("woff2");
   /* Chrome 36+, Opera 23+, Firefox 39+ */
 }
