@@ -9,12 +9,12 @@ sudo echo "127.0.0.1	localhost" | sudo tee -a /etc/hosts
 sleep 10
 
 echo "Checking if the containers have started"
-sudo docker ps -a
-for fcid in $(sudo docker ps -a | awk '/Exited/ { print $1 }'); do
+docker ps -a
+for fcid in $(docker ps -a | awk '/Exited/ { print $1 }'); do
   echo "Logs for container '$fcid'."
   docker logs "$fcid"
 done
-if sudo docker ps -a | grep -q Exited; then
+if docker ps -a | grep -q Exited; then
   echo "One or more containers failed to start." >&2
   exit 1
 fi
