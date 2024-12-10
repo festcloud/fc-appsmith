@@ -18,6 +18,9 @@ import {
 import { importSvg } from "@appsmith/ads-old";
 import type { IconName } from "@blueprintjs/core";
 import log from "loglevel";
+import IconNames from "../../../mock/meta4Icons";
+
+type M4IconName = (typeof IconNames)[keyof typeof IconNames];
 
 // This export must be named "IconSize" to match the exports of @blueprintjs/core/lib/esm/components/icon
 export enum IconSize {
@@ -25,7 +28,7 @@ export enum IconSize {
   LARGE = 20,
 }
 type IconMapType = Record<
-  IconName,
+  IconName | M4IconName,
   // eslint-disable-next-line @typescript-eslint/consistent-type-imports
   Record<IconSize, () => Promise<typeof import("*.svg")>>
 >;

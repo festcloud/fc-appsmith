@@ -1,6 +1,9 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import type { ButtonVariant } from "components/constants";
+import type {
+  ButtonSize,
+  ButtonVariant,
+} from "widgets/[Meta4]Widgets/constants";
 import type { RenderMode } from "constants/WidgetConstants";
 import { RenderModes } from "constants/WidgetConstants";
 import { buttonHoverActiveStyles } from "./utils";
@@ -32,6 +35,7 @@ import { buttonHoverActiveStyles } from "./utils";
 export interface ButtonContainerProps {
   buttonColor?: string;
   buttonVariant?: ButtonVariant;
+  buttonSize?: ButtonSize;
   disabled?: boolean;
   shouldFitContent?: boolean;
   maxWidth?: number;

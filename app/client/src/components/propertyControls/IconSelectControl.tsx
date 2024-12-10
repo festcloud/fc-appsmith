@@ -201,7 +201,7 @@ class IconSelectControl extends BaseControl<
     const { activeIcon } = this.state;
     const containerWidth =
       this.iconSelectTargetRef.current?.getBoundingClientRect?.()?.width || 0;
-
+    console.log("HANDLE_CONSOLE", { ICON_NAMES, icons });
     return (
       <>
         <IconSelectContainerStyles id={this.id} targetWidth={containerWidth} />

@@ -51,7 +51,7 @@ export class ContainerWidget extends BaseWidget<
   ContainerWidgetProps<WidgetProps>,
   WidgetState
 > {
-  static type = "CONTAINER_WIDGET";
+  static type = "M4_CONTAINER_WIDGET";
 
   constructor(props: ContainerWidgetProps<WidgetProps>) {
     super(props);
