@@ -27,6 +27,15 @@ import {
   getCustomBackgroundColor,
   getCustomBorderColor,
   getCustomColor,
+  getCustomDisableBackgroundColor,
+  getCustomDisableBorderColor,
+  getCustomDisableColor,
+  getCustomFocusBackgroundColor,
+  getCustomHoverBackgroundColor,
+  getFocusCustomBorderColor,
+  getFocusCustomColor,
+  getHoverCustomBorderColor,
+  getHoverCustomColor,
 } from "./utils";
 import type { ThemeProp } from "WidgetProvider/constants";
 import { toast } from "@appsmith/ads";
@@ -90,40 +99,44 @@ const buttonBaseStyle = css<ThemeProp & ButtonStyleProps>`
     border: 2px solid ${getCustomBorderColor(buttonVariant)} !important;
 
     color: ${getCustomColor(buttonVariant)} !important;
+
+    &:hover {
+      background-color: ${getCustomHoverBackgroundColor(buttonVariant)} !important;
+      color: ${getHoverCustomColor(buttonVariant)} !important;
+      border-color:${getHoverCustomBorderColor(buttonVariant)} !important;
+    }
+
+    &:focus {
+      background-color: ${getCustomFocusBackgroundColor(buttonVariant)} !important;
+      color: ${getFocusCustomColor(buttonVariant)} !important;
+      border-color:${getFocusCustomBorderColor(buttonVariant)} !important;
+    }
   
     &:disabled, &.${Classes.DISABLED} {
-    cursor: not-allowed;
-    background-color: ${
-      buttonVariant !== ButtonStyleVariantTypes.TEXT &&
-      "var(--wds-color-bg-disabled)"
-    } !important;
-    color: ${getCustomColor(buttonVariant)} !important;
-    box-shadow: none !important;
-    pointer-events: none;
-    border-color: var(--wds-color-border-disabled) !important;
+      cursor: not-allowed;
+      background-color: ${getCustomDisableBackgroundColor(buttonVariant)} !important;
+      color: ${getCustomDisableColor(buttonVariant)} !important;
+      border-color:${getCustomDisableBorderColor(buttonVariant)} !important;
+      box-shadow: none !important;
+      pointer-events: none;
+    }
 
-   
-  }
+    & > * {
+      margin-right: 0;
+    }
 
-  
+    & > span {
+      display: inline-block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
 
-  & > * {
-    margin-right: 0;
-  }
-
-  & > span {
-    display: inline-block;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-
-    font-size: ${(buttonSize === "MEDIUM" && "16px") || (buttonSize === "SMALL" && "14px")} !important;
-    line-height: ${(buttonSize === "MEDIUM" && "24px") || (buttonSize === "SMALL" && "21px")} !important;
-    font-weight: ${(buttonSize === "MEDIUM" && 600) || (buttonSize === "SMALL" && 500)} !important;
-    
-    color: currentColor !important;
-   
-  }
+      font-size: ${(buttonSize === "MEDIUM" && "16px") || (buttonSize === "SMALL" && "14px")} !important;
+      line-height: ${(buttonSize === "MEDIUM" && "24px") || (buttonSize === "SMALL" && "21px")} !important;
+      font-weight: ${(buttonSize === "MEDIUM" && 600) || (buttonSize === "SMALL" && 500)} !important;
+      
+      color: currentColor !important;
+    }
 `;
   }}
 
@@ -223,7 +236,7 @@ export function BaseButton(props: IButtonProps & ButtonStyleProps) {
         buttonColor={buttonColor}
         buttonVariant={buttonVariant}
         buttonSize={buttonSize}
-        className={`${className} pt-icon-large`}
+        className={`${className}`}
         // className={className}
         data-test-variant={buttonVariant}
         disabled={disabled}
