@@ -307,7 +307,7 @@ class InputWidget extends BaseInputWidget<InputWidgetProps, WidgetState> {
     };
   }
 
-  static type = "META4_INPUT_WIDGET";
+  static type = "M4_INPUT_WIDGET";
 
   static getConfig() {
     return {

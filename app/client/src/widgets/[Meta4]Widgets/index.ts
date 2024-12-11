@@ -1,14 +1,14 @@
 import type BaseWidget from "widgets/BaseWidget";
-import ContainerWidget from "./ContainerWidget";
-import ButtonWidget from "./ButtonWidget";
-import InputWidget from "./InputWidget";
-import TextWidget from "./TextWidget";
+import M4ContainerWidget from "./ContainerWidget";
+import M4ButtonWidget from "./ButtonWidget";
+import M4InputWidget from "./InputWidget";
+import M4TextWidget from "./TextWidget";
 
 const Meta4Widgets = [
-  ContainerWidget, 
-  ButtonWidget, 
-  InputWidget, 
-  TextWidget,
+  M4ContainerWidget, 
+  M4ButtonWidget, 
+  M4InputWidget, 
+  M4TextWidget,
 ];
 
 const Widgets = [...Meta4Widgets] as (typeof BaseWidget)[];
