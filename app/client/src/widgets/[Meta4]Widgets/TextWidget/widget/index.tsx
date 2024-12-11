@@ -438,7 +438,6 @@ class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
     const disableLink: boolean = this.props.disableLink
       ? true
       : this.shouldDisableLink();
-    console.log("HANDLE_CONSOLE", this.props);
     return (
       <WidgetStyleContainer
         className="t--text-widget-container"
