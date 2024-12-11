@@ -1,10 +1,8 @@
 // See readme.md for why this file exists.
-import IconNames from "../../../mock/meta4Icons";
 // Note: using type-only imports here to avoid circular dependencies between
 // this file and BlueprintJS icon components. (The circular dependency
 // may be created because this module replaces BlueprintJS's icon implementation.)
 import type { IconName, IconSize } from "@blueprintjs/core";
-type M4IconName = (typeof IconNames)[keyof typeof IconNames];
 
 // This type ensures we don’t forget to add a new icon or icon size
 // when BlueprintJS updates its IconName or IconSize types.
@@ -12,7 +10,7 @@ type M4IconName = (typeof IconNames)[keyof typeof IconNames];
 // If IconName gets a new value, we’ll get a type error like
 //   Property 'add' is missing in type '...' but required in type 'IconMapType'
 type IconMapType = Record<
-  IconName | M4IconName,
+  IconName,
   // eslint-disable-next-line @typescript-eslint/consistent-type-imports
   Record<IconSize, () => Promise<typeof import("*.svg")>>
 >;
@@ -28,38 +26,38 @@ type IconMapType = Record<
 // 2. Based on experiments, the import above only supports default exports,
 //    whereas we need the `ReactComponent` named export.
 const svgImportsMap: IconMapType = {
-  gear: {
-    16: async () => import("assets/icons/meta4/16px/gear.svg"),
-    20: async () => import("assets/icons/meta4/24px/gear.svg"),
-  },
-  close: {
-    16: async () => import("assets/icons/meta4/16px/close.svg"),
-    20: async () => import("assets/icons/meta4/24px/close.svg"),
-  },
-  "m4-chat": {
-    16: async () => import("assets/icons/meta4/16px/m4-chat.svg"),
-    20: async () => import("assets/icons/meta4/24px/m4-chat.svg"),
-  },
-  camunda: {
-    16: async () => import("assets/icons/meta4/16px/camunda.svg"),
-    20: async () => import("assets/icons/meta4/24px/camunda.svg"),
-  },
-  "m4-book": {
-    16: async () => import("assets/icons/meta4/16px/m4-book.svg"),
-    20: async () => import("assets/icons/meta4/24px/m4-book.svg"),
-  },
-  bag: {
-    16: async () => import("assets/icons/meta4/16px/bag.svg"),
-    20: async () => import("assets/icons/meta4/24px/bag.svg"),
-  },
-  "m4-arrow-left": {
-    16: async () => import("assets/icons/meta4/16px/m4-arrow-left.svg"),
-    20: async () => import("assets/icons/meta4/24px/m4-arrow-left.svg"),
-  },
-  "add-avatar": {
-    16: async () => import("assets/icons/meta4/16px/add-avatar.svg"),
-    20: async () => import("assets/icons/meta4/24px/add-avatar.svg"),
-  },
+  // gear: {
+  //   16: async () => import("assets/icons/meta4/16px/gear.svg"),
+  //   20: async () => import("assets/icons/meta4/24px/gear.svg"),
+  // },
+  // close: {
+  //   16: async () => import("assets/icons/meta4/16px/close.svg"),
+  //   20: async () => import("assets/icons/meta4/24px/close.svg"),
+  // },
+  // "m4-chat": {
+  //   16: async () => import("assets/icons/meta4/16px/m4-chat.svg"),
+  //   20: async () => import("assets/icons/meta4/24px/m4-chat.svg"),
+  // },
+  // camunda: {
+  //   16: async () => import("assets/icons/meta4/16px/camunda.svg"),
+  //   20: async () => import("assets/icons/meta4/24px/camunda.svg"),
+  // },
+  // "m4-book": {
+  //   16: async () => import("assets/icons/meta4/16px/m4-book.svg"),
+  //   20: async () => import("assets/icons/meta4/24px/m4-book.svg"),
+  // },
+  // bag: {
+  //   16: async () => import("assets/icons/meta4/16px/bag.svg"),
+  //   20: async () => import("assets/icons/meta4/24px/bag.svg"),
+  // },
+  // "m4-arrow-left": {
+  //   16: async () => import("assets/icons/meta4/16px/m4-arrow-left.svg"),
+  //   20: async () => import("assets/icons/meta4/24px/m4-arrow-left.svg"),
+  // },
+  // "add-avatar": {
+  //   16: async () => import("assets/icons/meta4/16px/add-avatar.svg"),
+  //   20: async () => import("assets/icons/meta4/24px/add-avatar.svg"),
+  // },
   add: {
     16: async () => import("assets/icons/blueprintjs/16px/add.svg"),
     20: async () => import("assets/icons/blueprintjs/20px/add.svg"),

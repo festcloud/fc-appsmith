@@ -74,8 +74,6 @@ import {
 } from "./SectionSplitterControl";
 import type { IconSelectControlV2Props } from "./IconSelectControlV2";
 import IconSelectControlV2 from "./IconSelectControlV2";
-import type { IconSelectControlM4Props } from "./IconSelectControlM4";
-import IconSelectControlM4 from "./IconSelectControlM4";
 import PrimaryColumnsControlWDS from "./PrimaryColumnsControlWDS";
 import ToolbarButtonListControl from "./ToolbarButtonListControl";
 import ArrayControl from "./ArrayControl";
@@ -130,7 +128,6 @@ export const PropertyControls = {
   ZoneStepperControl,
   SectionSplitterControl,
   IconSelectControlV2,
-  IconSelectControlM4,
   PrimaryColumnsControlWDS,
   ToolbarButtonListControl,
 };
