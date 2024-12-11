@@ -362,11 +362,11 @@ export function FixedLayoutResizable(props: ResizableProps) {
       />
     );
   });
+
   const widgetWidth =
     (reflowedPosition?.width === undefined
       ? newDimensions.width
       : reflowedPosition.width - 2 * WIDGET_PADDING) + RESIZE_BORDER_BUFFER;
-
   const widgetHeight =
     (reflowedPosition?.height === undefined
       ? newDimensions.height

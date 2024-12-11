@@ -5,9 +5,9 @@ import M4InputWidget from "./InputWidget";
 import M4TextWidget from "./TextWidget";
 
 const Meta4Widgets = [
-  M4ContainerWidget,
-  M4ButtonWidget,
-  M4InputWidget,
+  M4ContainerWidget, 
+  M4ButtonWidget, 
+  M4InputWidget, 
   M4TextWidget,
 ];
 

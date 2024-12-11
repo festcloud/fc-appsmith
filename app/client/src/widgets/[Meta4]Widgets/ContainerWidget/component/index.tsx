@@ -95,7 +95,7 @@ function ContainerComponentWrapper(
       const widgetType = el.getAttribute("type");
       const widgetId = el.dataset.widgetid;
       const isMainContainer = widgetId === "0";
-
+      console.log("HANDLE_CONSOLE", { widgetType });
       if (
         (widgetType === "CONTAINER_WIDGET" && props.onClickCapture) ||
         isMainContainer

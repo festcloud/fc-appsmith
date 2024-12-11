@@ -189,11 +189,11 @@ const WDSWidgets = [
 ];
 
 const Widgets = [
+  ...Meta4Widgets,
   ...WDSWidgets,
   ...DeprecatedWidgets,
   ...LegacyWidgets,
   ...EEWDSWidgets,
-  ...Meta4Widgets,
 ] as (typeof BaseWidget)[];
 
 export default Widgets;
