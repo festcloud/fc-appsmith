@@ -6,7 +6,7 @@ import { ValidationTypes } from "constants/WidgetValidation";
 import type { DerivedPropertiesMap } from "WidgetProvider/factory";
 import WidgetStyleContainer from "components/designSystems/appsmith/WidgetStyleContainer";
 import type { Color } from "constants/Colors";
-import type { SetterConfig, Stylesheet } from "entities/AppTheming";
+import type { SetterConfig } from "entities/AppTheming";
 import { pick } from "lodash";
 import { AutocompleteDataType } from "utils/autocomplete/AutocompleteDataType";
 import type { WidgetProps, WidgetState } from "widgets/BaseWidget";
@@ -20,13 +20,9 @@ import type {
   AutocompletionDefinitions,
 } from "WidgetProvider/constants";
 import { FILL_WIDGET_MIN_WIDTH } from "constants/minWidthConstants";
-import { DEFAULT_FONT_SIZE, WIDGET_TAGS } from "constants/WidgetConstants";
+import { WIDGET_TAGS } from "constants/WidgetConstants";
 import { ResponsiveBehavior } from "layoutSystems/common/utils/constants";
-import {
-  OverflowTypes,
-  typographyOptions,
-  typographyVariants,
-} from "../constants";
+import { OverflowTypes, typographyOptions } from "../constants";
 import IconSVG from "../icon.svg";
 import ThumbnailSVG from "../thumbnail.svg";
 import { DynamicHeight } from "utils/WidgetFeatures";
@@ -40,8 +36,6 @@ import type { DynamicPath } from "utils/DynamicBindingUtils";
 import { isDynamicValue } from "utils/DynamicBindingUtils";
 
 const MAX_HTML_PARSING_LENGTH = 1000;
-
-const allowedValues = typographyOptions.map((option) => option.value);
 
 class TextWidget extends BaseWidget<TextWidgetProps, WidgetState> {
   static type = "M4_TEXT_WIDGET";
