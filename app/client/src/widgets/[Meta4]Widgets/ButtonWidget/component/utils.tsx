@@ -49,12 +49,14 @@ const borderButtonStyle = {
   PRIMARY: Colors.M_BLUE_700,
   OUTLINE: Colors.M_BLUE_700,
   ERROR: Colors.M_RED_700,
+  TEXT: "transparent",
 };
 
 const hoverBorderButtonStyle = {
   PRIMARY: Colors.M_BLUE_600,
   OUTLINE: Colors.M_BLUE_600,
   ERROR: Colors.M_RED_600,
+  TEXT: "transparent",
 };
 
 const disableButtonStyle = {
@@ -68,6 +70,7 @@ const disableBorderButtonStyle = {
   PRIMARY: Colors.M_BLUE_200,
   OUTLINE: Colors.M_BLUE_200,
   ERROR: Colors.M_RED_200,
+  TEXT: "transparent",
 };
 
 const disableTextButtonStyle = {

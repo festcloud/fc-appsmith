@@ -26,38 +26,26 @@ type IconMapType = Record<
 // 2. Based on experiments, the import above only supports default exports,
 //    whereas we need the `ReactComponent` named export.
 const svgImportsMap: IconMapType = {
-  // gear: {
-  //   16: async () => import("assets/icons/meta4/16px/gear.svg"),
-  //   20: async () => import("assets/icons/meta4/24px/gear.svg"),
-  // },
-  // close: {
-  //   16: async () => import("assets/icons/meta4/16px/close.svg"),
-  //   20: async () => import("assets/icons/meta4/24px/close.svg"),
-  // },
-  // "m4-chat": {
-  //   16: async () => import("assets/icons/meta4/16px/m4-chat.svg"),
-  //   20: async () => import("assets/icons/meta4/24px/m4-chat.svg"),
-  // },
-  // camunda: {
-  //   16: async () => import("assets/icons/meta4/16px/camunda.svg"),
-  //   20: async () => import("assets/icons/meta4/24px/camunda.svg"),
-  // },
-  // "m4-book": {
-  //   16: async () => import("assets/icons/meta4/16px/m4-book.svg"),
-  //   20: async () => import("assets/icons/meta4/24px/m4-book.svg"),
-  // },
-  // bag: {
-  //   16: async () => import("assets/icons/meta4/16px/bag.svg"),
-  //   20: async () => import("assets/icons/meta4/24px/bag.svg"),
-  // },
-  // "m4-arrow-left": {
-  //   16: async () => import("assets/icons/meta4/16px/m4-arrow-left.svg"),
-  //   20: async () => import("assets/icons/meta4/24px/m4-arrow-left.svg"),
-  // },
-  // "add-avatar": {
-  //   16: async () => import("assets/icons/meta4/16px/add-avatar.svg"),
-  //   20: async () => import("assets/icons/meta4/24px/add-avatar.svg"),
-  // },
+  "global-search": {
+    16: async () => import("assets/icons/meta4/16px/global-search.svg"),
+    20: async () => import("assets/icons/meta4/24px/global-search.svg"),
+  },
+  task: {
+    16: async () => import("assets/icons/meta4/16px/task.svg"),
+    20: async () => import("assets/icons/meta4/24px/task.svg"),
+  },
+  bell: {
+    16: async () => import("assets/icons/meta4/16px/bell.svg"),
+    20: async () => import("assets/icons/meta4/24px/bell.svg"),
+  },
+  "more-btn": {
+    16: async () => import("assets/icons/meta4/16px/more-btn.svg"),
+    20: async () => import("assets/icons/meta4/24px/more-btn.svg"),
+  },
+  "plus-btn": {
+    16: async () => import("assets/icons/meta4/16px/plus-btn.svg"),
+    20: async () => import("assets/icons/meta4/24px/plus-btn.svg"),
+  },
   add: {
     16: async () => import("assets/icons/blueprintjs/16px/add.svg"),
     20: async () => import("assets/icons/blueprintjs/20px/add.svg"),

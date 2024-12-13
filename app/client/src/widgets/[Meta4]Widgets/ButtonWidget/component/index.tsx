@@ -81,6 +81,7 @@ const buttonBaseStyle = css<ThemeProp & ButtonStyleProps>`
 
   border-radius: 8px;
   box-shadow: ${({ boxShadow }) => `${boxShadow ?? "none"}`} !important;
+  align-items: center;
 
   gap: 8px;
 
@@ -179,6 +180,7 @@ export interface ButtonStyleProps {
   boxShadowColor?: string;
   borderRadius?: string;
   icon?: IconName | MaybeElement;
+  rightIcon?: IconName | MaybeElement;
   iconName?: IconName;
   iconAlign?: Alignment;
   shouldFitContent?: boolean;
@@ -211,9 +213,7 @@ export function BaseButton(props: IButtonProps & ButtonStyleProps) {
     rightIcon,
     text,
   } = props;
-  console.log("HANDLE_CONSOLE", { icon });
   const isRightAlign = iconAlign === Alignment.RIGHT;
-
   return (
     <DragContainer
       buttonColor={buttonColor}
@@ -236,16 +236,17 @@ export function BaseButton(props: IButtonProps & ButtonStyleProps) {
         buttonColor={buttonColor}
         buttonVariant={buttonVariant}
         buttonSize={buttonSize}
-        className={`${className}`}
-        // className={className}
+        className={className}
         data-test-variant={buttonVariant}
         disabled={disabled}
         fill
-        icon={isRightAlign ? icon : iconName || icon}
+        icon={isRightAlign ? icon : <Icon icon={iconName} size={24} />}
         loading={loading}
         onClick={onClick}
         placement={placement}
-        rightIcon={isRightAlign ? iconName || rightIcon : rightIcon}
+        rightIcon={
+          isRightAlign ? <Icon icon={iconName} size={24} /> : rightIcon
+        }
         text={text}
       />
     </DragContainer>

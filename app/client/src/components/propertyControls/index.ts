@@ -36,6 +36,7 @@ import MenuItemsControl from "./MenuItemsControl";
 import OpenConfigPanelControl from "./OpenConfigPanelControl";
 import ButtonListControl from "./ButtonListControl";
 import IconSelectControl from "./IconSelectControl";
+import IconSelectControlM4 from "./IconSelectControlM4";
 import BoxShadowOptionsControl from "./BoxShadowOptionsControl";
 import BorderRadiusOptionsControl from "./BorderRadiusOptionsControl";
 import ButtonBorderRadiusOptionsControl from "./ButtonBorderRadiusControl";
@@ -106,6 +107,7 @@ export const PropertyControls = {
   OpenConfigPanelControl,
   ButtonListControl,
   IconSelectControl,
+  IconSelectControlM4,
   BoxShadowOptionsControl,
   BorderRadiusOptionsControl,
   ButtonBorderRadiusOptionsControl,

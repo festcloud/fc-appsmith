@@ -50,8 +50,8 @@ const ButtonContainer = styled.div<ButtonContainerProps>`
   height: 100%;
 
   & > button {
-    width: 100%;
     height: 100%;
+    width: min-content !important;
   }
 
   ${({ maxWidth, minHeight, minWidth, shouldFitContent }) =>
@@ -59,7 +59,7 @@ const ButtonContainer = styled.div<ButtonContainerProps>`
     css`
       .bp3-button.bp3-fill {
         display: flex;
-        width: auto;
+        width: min-content !important;
         ${minWidth ? `min-width: ${minWidth}px;` : ""}
         ${minHeight ? `min-height: ${minHeight}px;` : ""}
         ${maxWidth ? `max-width: ${maxWidth}px;` : ""}

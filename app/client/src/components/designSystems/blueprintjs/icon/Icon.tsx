@@ -56,9 +56,8 @@ function Icon(props: IconProps) {
     className,
     color,
     htmlTitle,
-    iconSize,
     intent,
-    size = iconSize ?? IconSize.STANDARD,
+    size = IconSize.STANDARD,
     tagName: TagName = "span",
     ...htmlprops
   } = props;
@@ -102,27 +101,29 @@ function Icon(props: IconProps) {
       className,
     );
 
-    const viewBox = `0 0 ${pixelGridSize} ${pixelGridSize}`;
+    const viewBox = `0 0 ${size} ${size}`;
 
     return (
-      <TagName
-        {...htmlprops}
-        className={classes}
-        // @ts-expect-error Adding a custom DOM attribute called `icon`, for compatibility with the actual Blueprint icon component.
-        // Tests rely on this attribute.
-        icon={icon}
-        title={htmlTitle}
-      >
+      <>
         {SvgIcon && (
-          <SvgIcon
-            data-icon={icon}
-            fill={color}
-            height={size}
-            viewBox={viewBox}
-            width={size}
-          />
+          <TagName
+            {...htmlprops}
+            className={classes}
+            // @ts-expect-error Adding a custom DOM attribute called `icon`, for compatibility with the actual Blueprint icon component.
+            // Tests rely on this attribute.
+            icon={icon}
+            title={htmlTitle}
+          >
+            <SvgIcon
+              data-icon={icon}
+              fill={color}
+              height={size}
+              viewBox={viewBox}
+              width={size}
+            />
+          </TagName>
         )}
-      </TagName>
+      </>
     );
   }
 }
